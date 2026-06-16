@@ -232,6 +232,6 @@ def get_orders(db: Session = Depends(get_db)):
 
 from models import User
 
-@app.get("/users")
-def get_users(db: Session = Depends(get_db)):
+@app.get("/debug-users")
+def debug_users(db: Session = Depends(get_db)):
     return db.query(User).all()
