@@ -33,11 +33,12 @@ async function loginUser(){
     const password =
     document.getElementById("password").value;
 
-    const response =
     console.log({
-    email,
-    password
-});
+        email,
+        password
+    });
+
+    const response =
     await fetch(
         "https://novacart-production-fb18.up.railway.app/login",
         {
@@ -81,34 +82,6 @@ async function loginUser(){
 
     }
 }
-
-const data =
-await response.json();
-
-localStorage.setItem(
-    "token",
-    data.access_token
-);
-
-localStorage.setItem(
-    "username",
-    data.username
-);
-
-if(data.access_token){
-
-window.location.href =
-"ecommerce.html";
-
-}
-
-document.getElementById(
-"message"
-).innerText =
-data.access_token
-? "Login Successful"
-: "Invalid Credentials";
-
 
 </script>
 
