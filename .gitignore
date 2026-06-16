@@ -1,5 +1,5 @@
-venv/
 Backend/venv/
+venv/
 
 __pycache__/
 Backend/__pycache__/
