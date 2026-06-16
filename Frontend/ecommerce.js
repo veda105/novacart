@@ -1,40 +1,36 @@
-
 const token = localStorage.getItem("token");
 
-if(!token){
-
+if (!token) {
     window.location.href = "login.html";
-
 }
-
-
 
 let products = [];
 
-async function loadProducts(){
+async function loadProducts() {
 
-try{
+    try {
 
-const response =
-await fetch(
-"https://novacart-production-fb18.up.railway.app"
-);
+        const response =
+        await fetch(
+            "https://novacart-production-fb18.up.railway.app/products"
+        );
 
-products =
-await response.json();
+        products =
+        await response.json();
 
-console.log(products);
+        console.log(products);
 
-renderProducts(products);
-}
-catch(error){
+        renderProducts(products);
 
-console.log(
-"Error loading products",
-error
-);
+    }
+    catch(error){
 
-}
+        console.log(
+            "Error loading products",
+            error
+        );
+
+    }
 
 }
 
@@ -51,319 +47,320 @@ document.getElementById("suggestions");
 
 function renderProducts(productList){
 
-if(!productContainer) return;
+    if(!productContainer) return;
 
-productContainer.innerHTML = "";
+    productContainer.innerHTML = "";
 
-productList.forEach(product=>{
+    productList.forEach(product=>{
 
-productContainer.innerHTML += `
-<div class="product-card">
+        productContainer.innerHTML += `
+        <div class="product-card">
 
-<img src="${product.image}">
+        <img src="${product.image}">
 
-<div class="product-info">
+        <div class="product-info">
 
-<h3>${product.name}</h3>
+        <h3>${product.name}</h3>
 
-<p>
-⭐⭐⭐⭐⭐ ${product.rating}
-</p>
+        <p>
+        ⭐⭐⭐⭐⭐ ${product.rating}
+        </p>
 
-<p class="price">
-₹${product.price.toLocaleString()}
-</p>
+        <p class="price">
+        ₹${product.price.toLocaleString()}
+        </p>
 
-<p>
-${product.category}
-</p>
+        <p>
+        ${product.category}
+        </p>
 
-<div class="product-buttons">
+        <div class="product-buttons">
 
-<button
-class="view-btn"
-onclick="viewProduct(${product.id})">
+        <button
+        class="view-btn"
+        onclick="viewProduct(${product.id})">
 
-View
+        View
 
-</button>
+        </button>
 
-<button
-class="cart-add-btn"
-onclick="addToCart(${product.id})">
+        <button
+        class="cart-add-btn"
+        onclick="addToCart(${product.id})">
 
-Add
+        Add
 
-</button>
+        </button>
 
-</div>
+        </div>
 
-</div>
+        </div>
 
-</div>
-`;
+        </div>
+        `;
 
-});
+    });
 
 }
+
 renderProducts(products);
 
 function addToCart(id){
 
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
 
-const product =
-products.find(
-p=>p.id===id
-);
+    const product =
+    products.find(
+        p => p.id === id
+    );
 
-cart.push(product);
+    cart.push(product);
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
 
-updateCartCount();
+    updateCartCount();
 
 }
 
 function updateCartCount(){
 
-const cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+    const cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
 
-const count =
-document.getElementById(
-"cartCount"
-);
+    const count =
+    document.getElementById(
+        "cartCount"
+    );
 
-if(count){
+    if(count){
 
-count.innerText =
-cart.length;
+        count.innerText =
+        cart.length;
 
-}
+    }
 
 }
 
 function viewProduct(id){
 
-const product =
-products.find(
-p=>p.id===id
-);
+    const product =
+    products.find(
+        p => p.id === id
+    );
 
-localStorage.setItem(
-"selectedProduct",
-JSON.stringify(product)
-);
+    localStorage.setItem(
+        "selectedProduct",
+        JSON.stringify(product)
+    );
 
-window.location.href =
-"product.html";
+    window.location.href =
+    "product.html";
 
 }
 
 function getWishlist(){
 
-return JSON.parse(
-localStorage.getItem(
-"wishlist"
-)
-) || [];
+    return JSON.parse(
+        localStorage.getItem(
+            "wishlist"
+        )
+    ) || [];
 
 }
 
 function saveWishlist(wishlist){
 
-localStorage.setItem(
-"wishlist",
-JSON.stringify(wishlist)
-);
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
 
 }
 
 function toggleWishlist(id){
 
-let wishlist =
-getWishlist();
+    let wishlist =
+    getWishlist();
 
-const product =
-products.find(
-p=>p.id===id
-);
+    const product =
+    products.find(
+        p => p.id === id
+    );
 
-const exists =
-wishlist.find(
-item=>item.id===id
-);
+    const exists =
+    wishlist.find(
+        item => item.id === id
+    );
 
-if(exists){
+    if(exists){
 
-wishlist =
-wishlist.filter(
-item=>item.id!==id
-);
+        wishlist =
+        wishlist.filter(
+            item => item.id !== id
+        );
 
-}
-else{
+    }
+    else{
 
-wishlist.push(product);
+        wishlist.push(product);
 
-}
+    }
 
-saveWishlist(wishlist);
+    saveWishlist(wishlist);
 
-renderProducts(products);
+    renderProducts(products);
 
 }
 
 if(searchInput){
 
-searchInput.addEventListener(
-"input",
-function(){
+    searchInput.addEventListener(
+        "input",
+        function(){
 
-const value =
-this.value
-.toLowerCase();
+            const value =
+            this.value
+            .toLowerCase();
 
-const filtered =
-products.filter(
-product =>
-product.name
-.toLowerCase()
-.includes(value)
-);
+            const filtered =
+            products.filter(
+                product =>
+                product.name
+                .toLowerCase()
+                .includes(value)
+            );
 
-renderProducts(filtered);
+            renderProducts(filtered);
 
-if(!suggestions)
-return;
+            if(!suggestions)
+            return;
 
-suggestions.innerHTML="";
+            suggestions.innerHTML = "";
 
-if(value===""){
+            if(value === ""){
 
-suggestions.style.display=
-"none";
+                suggestions.style.display =
+                "none";
 
-return;
+                return;
 
-}
+            }
 
-filtered
-.slice(0,5)
-.forEach(product=>{
+            filtered
+            .slice(0,5)
+            .forEach(product=>{
 
-suggestions.innerHTML +=
+                suggestions.innerHTML +=
+                `
+                <div
+                class="suggestion-item"
+                onclick="viewProduct(${product.id})">
 
-`
+                ${product.name}
 
-<div
-class="suggestion-item"
-onclick="viewProduct(${product.id})">
+                </div>
+                `;
 
-${product.name}
+            });
 
-</div>
+            suggestions.style.display =
+            "block";
 
-`;
-
-});
-
-suggestions.style.display=
-"block";
-
-});
+        }
+    );
 
 }
 
 document
 .querySelectorAll(
-".category-card"
+    ".category-card"
 )
 .forEach(card=>{
 
-card.addEventListener(
-"click",
-function(){
+    card.addEventListener(
+        "click",
+        function(){
 
-const category =
-this.dataset.category;
+            const category =
+            this.dataset.category;
 
-const filtered =
-products.filter(
-product =>
-product.category ===
-category
-);
+            const filtered =
+            products.filter(
+                product =>
+                product.category ===
+                category
+            );
 
-renderProducts(filtered);
+            renderProducts(filtered);
 
-});
+        }
+    );
 
 });
 
 updateCartCount();
 
 document.addEventListener(
-"click",
-function(e){
+    "click",
+    function(e){
 
-if(
-suggestions &&
-searchInput &&
-!searchInput.contains(
-e.target
-) &&
-!suggestions.contains(
-e.target
-)
-){
+        if(
+            suggestions &&
+            searchInput &&
+            !searchInput.contains(
+                e.target
+            ) &&
+            !suggestions.contains(
+                e.target
+            )
+        ){
 
-suggestions.style.display=
-"none";
+            suggestions.style.display =
+            "none";
 
-}
+        }
 
-});
+    }
+);
 
 const loggedUser =
 localStorage.getItem(
-"username"
+    "username"
 );
 
 const authSection =
 document.getElementById(
-"authSection"
+    "authSection"
 );
 
 if(loggedUser && authSection){
 
-authSection.innerHTML = `
+    authSection.innerHTML = `
 
-<span class="welcome-user">
-Welcome ${loggedUser}
-</span>
+    <span class="welcome-user">
+    Welcome ${loggedUser}
+    </span>
 
-<button
-onclick="getProfile()">
-Profile
-</button>
+    <button
+    onclick="getProfile()">
+    Profile
+    </button>
 
-<button
-class="logout-btn"
-onclick="logout()">
-Logout
-</button>
+    <button
+    class="logout-btn"
+    onclick="logout()">
+    Logout
+    </button>
 
-`;
+    `;
 }
 
 function logout(){
@@ -383,7 +380,7 @@ async function getProfile(){
 
     const response =
     await fetch(
-        "https://novacart-production-fb18.up.railway.app",
+        "https://novacart-production-fb18.up.railway.app/profile",
         {
             method: "GET",
             headers: {
