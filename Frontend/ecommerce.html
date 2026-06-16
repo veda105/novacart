@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NovaCart</title>
+
+    <link
+        rel="stylesheet"
+        href="ecommerce.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND BLOBS -->
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            NovaCart
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#">
+                    Trending
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    Categories
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    New Arrivals
+                </a>
+            </li>
+
+        </ul>
+
+       <div class="nav-right">
+
+    <div class="search-wrapper">
+
+        <input
+        type="text"
+        placeholder="Search products..."
+        id="searchInput">
+
+        <div
+        id="suggestions"
+        class="suggestions">
+
+        </div>
+
+    </div>
+
+    <div id="authSection">
+        <button onclick="getProfile()">
+        Profile
+    </button>
+
+        <a href="login.html">
+            Login
+        </a>
+
+        <a href="register.html">
+            Register
+        </a>
+
+    </div>
+
+    <a href="cart.html">
+        🛒
+        <span id="cartCount">
+            0
+        </span>
+    </a>
+
+</div> 
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <span class="badge">
+                ✨ Trending Marketplace
+            </span>
+
+            <h1>
+
+                Discover
+                What's Next.
+
+            </h1>
+
+            <p>
+
+                Premium tech, fashion and lifestyle
+                products curated for the modern generation.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn">
+                    Explore Collection
+                </button>
+
+                <button class="secondary-btn">
+                    Learn More
+                </button>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <h3>
+                        50K+
+                    </h3>
+
+                    <span>
+                        Customers
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        4.9★
+                    </h3>
+
+                    <span>
+                        Rating
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        120+
+                    </h3>
+
+                    <span>
+                        Brands
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="glass-card main-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900"
+                    alt="Phone">
+
+            </div>
+
+            <div class="floating-card top-card">
+
+                <span>
+                    🔥 Trending
+                </span>
+
+                <h4>
+                    iPhone 15 Pro
+                </h4>
+
+            </div>
+
+            <div class="floating-card bottom-card">
+
+                <span>
+                    ⭐ Best Seller
+                </span>
+
+                <h4>
+                    AirPods Pro
+                </h4>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CATEGORIES -->
+
+    <section class="categories">
+
+        <h2>
+            Explore Categories
+        </h2>
+
+        <div class="category-grid">
+
+            <div class="category-card" data-category="Phones">📱 Phones</div>
+<div class="category-card" data-category="Laptops">💻 Laptops</div>
+<div class="category-card" data-category="Audio">🎧 Audio</div>
+<div class="category-card" data-category="Gaming">🎮 Gaming</div>
+<div class="category-card" data-category="Accessories">⌚ Accessories</div>
+<div class="category-card" data-category="Fashion">👕 Fashion</div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section class="products-section">
+
+        <div class="section-title">
+
+            <h2>
+                Trending Products
+            </h2>
+
+            <p>
+                Handpicked products you'll love.
+            </p>
+
+        </div>
+
+        <div
+            id="productContainer"
+            class="product-grid">
+
+        </div>
+
+    </section>
+
+    <!-- WHY US -->
+
+    <section class="why-us">
+
+        <div class="feature-card">
+
+            🚚
+
+            <h3>
+                Fast Delivery
+            </h3>
+
+            <p>
+                Get products delivered quickly.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            🔒
+
+            <h3>
+                Secure Payments
+            </h3>
+
+            <p>
+                Safe and trusted checkout.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            💎
+
+            <h3>
+                Premium Quality
+            </h3>
+
+            <p>
+                Only top-rated products.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <section class="newsletter">
+
+        <h2>
+            Stay Updated
+        </h2>
+
+        <p>
+            Get notified about new arrivals and deals.
+        </p>
+
+        <div class="newsletter-box">
+
+            <input
+                type="email"
+                placeholder="Enter your email">
+
+            <button>
+                Subscribe
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            NovaCart
+        </h3>
+
+        <p>
+            Discover What's Next.
+        </p>
+
+    </footer>
+
+    <script src="ecommerce.js"></script>
+
+</body>
+
+</html>

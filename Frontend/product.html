@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>NovaCart Product</title>
+
+<link
+rel="stylesheet"
+href="ecommerce.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+.product-page{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:80px 8%;
+
+display:flex;
+
+gap:60px;
+
+align-items:center;
+
+}
+
+.product-image{
+
+flex:1;
+}
+
+.product-image img{
+
+width:100%;
+
+max-width:550px;
+
+border-radius:30px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.product-details{
+
+flex:1;
+}
+
+.product-details h1{
+
+font-size:3rem;
+
+margin-bottom:20px;
+}
+
+.rating{
+
+color:#38BDF8;
+
+font-size:1.1rem;
+
+margin-bottom:20px;
+}
+
+.product-price{
+
+font-size:2.2rem;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+color:#38BDF8;
+}
+
+.product-description{
+
+color:#CBD5E1;
+
+line-height:1.8;
+
+margin-bottom:30px;
+}
+
+.features{
+
+margin-bottom:30px;
+}
+
+.features li{
+
+margin-bottom:10px;
+
+color:#CBD5E1;
+}
+
+.action-buttons{
+
+display:flex;
+
+gap:15px;
+}
+
+.add-btn{
+
+background:#38BDF8;
+
+border:none;
+
+padding:14px 28px;
+
+border-radius:14px;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:600;
+}
+
+.buy-btn{
+
+background:transparent;
+
+border:1px solid rgba(255,255,255,.15);
+
+padding:14px 28px;
+
+border-radius:14px;
+
+color:white;
+
+cursor:pointer;
+}
+
+@media(max-width:1000px){
+
+.product-page{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.action-buttons{
+
+justify-content:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+NovaCart
+</div>
+
+<div class="nav-right">
+
+<a href="cart.html">
+
+🛒
+
+<span id="cartCount">
+0
+</span>
+
+</a>
+
+</div>
+
+</nav>
+
+<div
+id="productPage"
+class="product-page">
+
+</div>
+
+<script>
+
+const product =
+JSON.parse(
+localStorage.getItem(
+"selectedProduct"
+)
+);
+
+const container =
+document.getElementById(
+"productPage"
+);
+
+if(product){
+
+container.innerHTML =
+
+`
+
+<div class="product-image">
+
+<img src="${product.image}">
+
+</div>
+
+<div class="product-details">
+
+<h1>
+
+${product.name}
+
+</h1>
+
+<p class="rating">
+
+⭐ ${product.rating}
+
+</p>
+
+<p class="product-price">
+
+₹${product.price.toLocaleString()}
+
+</p>
+
+<p class="product-description">
+
+${product.description}
+
+</p>
+
+<ul class="features">
+
+<li>✓ Premium Build Quality</li>
+
+<li>✓ Fast Delivery Available</li>
+
+<li>✓ 1 Year Warranty</li>
+
+<li>✓ Secure Payment</li>
+
+</ul>
+
+<div class="action-buttons">
+
+<button
+class="add-btn"
+onclick="addProduct()">
+
+Add To Cart
+
+</button>
+
+<button
+class="buy-btn">
+
+Buy Now
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function addProduct(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+cart.push(product);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCount();
+
+alert(
+"Added To Cart"
+);
+
+}
+
+function updateCount(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const badge =
+document.getElementById(
+"cartCount"
+);
+
+if(badge){
+
+badge.innerText =
+cart.length;
+
+}
+
+}
+
+updateCount();
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | NovaCart</title>
+
+<link
+rel="stylesheet"
+href="ecommerce.css">
+
+<style>
+
+.checkout-page{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:60px 8%;
+}
+
+.checkout-title{
+
+font-size:3rem;
+
+margin-bottom:40px;
+}
+
+.checkout-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:40px;
+}
+
+.checkout-form{
+
+background:
+rgba(255,255,255,.05);
+
+padding:30px;
+
+border-radius:24px;
+
+border:
+1px solid rgba(255,255,255,.08);
+}
+
+.checkout-form input{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+rgba(255,255,255,.08);
+
+color:white;
+}
+
+.summary{
+
+background:
+rgba(255,255,255,.05);
+
+padding:30px;
+
+border-radius:24px;
+
+border:
+1px solid rgba(255,255,255,.08);
+}
+
+.place-order{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:#38BDF8;
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+margin-top:20px;
+}
+
+@media(max-width:900px){
+
+.checkout-grid{
+
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+NovaCart
+</div>
+
+</nav>
+
+<div class="checkout-page">
+
+<h1 class="checkout-title">
+
+Checkout
+
+</h1>
+
+<div class="checkout-grid">
+
+<div class="checkout-form">
+
+<h2>
+
+Shipping Details
+
+</h2>
+
+<br>
+
+<input
+type="text"
+placeholder="Full Name">
+
+<input
+type="email"
+placeholder="Email">
+
+<input
+type="text"
+placeholder="Phone Number">
+
+<input
+type="text"
+placeholder="Address">
+
+<input
+type="text"
+placeholder="City">
+
+<input
+type="text"
+placeholder="Pincode">
+
+</div>
+
+<div class="summary">
+
+<h2>
+
+Order Summary
+
+</h2>
+
+<br>
+
+<p id="totalAmount">
+
+</p>
+
+<button
+class="place-order"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+let total = 0;
+
+cart.forEach(product=>{
+
+total += product.price;
+
+});
+
+document
+.getElementById(
+"totalAmount"
+)
+.innerHTML =
+
+`
+<h3>
+Total:
+₹${total.toLocaleString()}
+</h3>
+`;
+
+async function placeOrder(){
+
+    const token =
+    localStorage.getItem("token");
+
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+    let total = 0;
+
+    cart.forEach(product=>{
+
+        total += product.price;
+
+    });
+
+    const response =
+    await fetch(
+        "http://127.0.0.1:8000/orders",
+        {
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization": `Bearer ${token}`
+            },
+
+            body:JSON.stringify({
+                total_amount: total
+            })
+        }
+    );
+
+    const data =
+    await response.json();
+
+    console.log(data);
+
+    if(response.ok){
+
+        localStorage.removeItem("cart");
+
+        window.location.href =
+        "success.html";
+
+    }
+    else{
+
+        alert("Order Failed");
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

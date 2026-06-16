@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NovaCart Login</title>
+</head>
+
+<body>
+
+<h1>Login</h1>
+
+<input
+id="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+<button onclick="loginUser()">
+Login
+</button>
+
+<p id="message"></p>
+
+<script>
+
+async function loginUser(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+const response =
+await fetch(
+"http://127.0.0.1:8000/login",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+email,
+password
+})
+}
+);
+
+const data =
+await response.json();
+
+localStorage.setItem(
+    "token",
+    data.access_token
+);
+
+localStorage.setItem(
+    "username",
+    data.username
+);
+
+if(data.access_token){
+
+window.location.href =
+"ecommerce.html";
+
+}
+
+document.getElementById(
+"message"
+).innerText =
+data.access_token
+? "Login Successful"
+: "Invalid Credentials";
+}
+
+</script>
+
+</body>
+</html>

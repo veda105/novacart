@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Order Success</title>
+
+<link
+rel="stylesheet"
+href="ecommerce.css">
+
+<style>
+
+.success{
+
+height:80vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+}
+
+.success h1{
+
+font-size:4rem;
+
+margin-bottom:20px;
+}
+
+.success p{
+
+color:#CBD5E1;
+}
+
+.home-btn{
+
+margin-top:30px;
+
+padding:15px 30px;
+
+border:none;
+
+border-radius:14px;
+
+background:#38BDF8;
+
+color:white;
+
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="success">
+
+<h1>
+
+🎉 Order Placed
+
+</h1>
+
+<p>
+
+Thank you for shopping with NovaCart.
+
+</p>
+
+<button
+class="home-btn"
+onclick="goHome()">
+
+Continue Shopping
+
+</button>
+
+</div>
+
+<script>
+
+function goHome(){
+
+window.location.href =
+"ecommerce.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
