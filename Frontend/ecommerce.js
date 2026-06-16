@@ -17,7 +17,7 @@ try{
 
 const response =
 await fetch(
-"http://127.0.0.1:8000/products"
+"https://novacart-production-fb18.up.railway.app"
 );
 
 products =
@@ -383,7 +383,7 @@ async function getProfile(){
 
     const response =
     await fetch(
-        "http://127.0.0.1:8000/profile",
+        "https://novacart-production-fb18.up.railway.app",
         {
             method: "GET",
             headers: {
