@@ -229,3 +229,9 @@ def get_orders(db: Session = Depends(get_db)):
     orders = db.query(Order).all()
 
     return orders
+
+from models import User
+
+@app.get("/users")
+def get_users(db: Session = Depends(get_db)):
+    return db.query(User).all()
