@@ -113,8 +113,16 @@ def register_user(
     user: UserCreate,
     db: Session = Depends(get_db)
 ):
-    
 
+    existing_user = crud.get_user_by_email(
+        db,
+        user.email
+    )
+
+    if existing_user:
+        return {
+            "message": "Email already exists"
+        }
 
     return crud.create_user(
         db,
