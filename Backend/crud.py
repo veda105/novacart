@@ -111,3 +111,14 @@ def login_user(
         User.email == email,
         User.password == password
     ).first()
+
+from models import Order
+
+def get_orders_by_user(
+    db: Session,
+    user_id: int
+):
+
+    return db.query(Order).filter(
+        Order.user_id == user_id
+    ).all()

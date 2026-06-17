@@ -230,11 +230,32 @@ def create_order(
         "order_id": new_order.id
     }
 
-
 @app.get("/orders")
-def get_orders(db: Session = Depends(get_db)):
+def get_orders(
+    authorization: str = Header(None),
+    db: Session = Depends(get_db)
+):
 
-    orders = db.query(Order).all()
+    if not authorization:
+        return {
+            "message": "Token Missing"
+        }
+
+    token = authorization.replace(
+        "Bearer ",
+        ""
+    )
+
+    payload = verify_token(token)
+
+    if payload is None:
+        return {
+            "message": "Invalid Token"
+        }
+
+    orders = db.query(Order).filter(
+        Order.user_id == payload["user_id"]
+    ).all()
 
     return orders
 

@@ -27,3 +27,14 @@ class UserLogin(BaseModel):
 class OrderCreate(BaseModel):
 
     total_amount: float
+
+class OrderResponse(BaseModel):
+
+    id: int
+
+    user_id: int
+
+    total_amount: float
+
+    class Config:
+        from_attributes = True

@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #06142e,
+        #0a2245
+    );
+
+    min-height: 100vh;
+
+    color: white;
+
+    padding: 40px;
+}
+
+.container {
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+h1 {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    color: #44b3ff;
+}
+
+.form-section {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 15px;
+
+    background: #16284d;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    margin-bottom: 40px;
+}
+
+.form-section input,
+.form-section textarea {
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #30456e;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.form-section textarea {
+
+    grid-column: span 2;
+
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.form-section button {
+
+    grid-column: span 2;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #44b3ff;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.form-section button:hover {
+
+    transform: translateY(-2px);
+}
+
+h2 {
+
+    margin-bottom: 20px;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #16284d;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+th,
+td {
+
+    padding: 15px;
+
+    text-align: left;
+}
+
+th {
+
+    background: #1d3561;
+}
+
+tr {
+
+    border-bottom:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+}
+
+.edit-btn {
+
+    background: orange;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    cursor: pointer;
+
+    margin-right: 8px;
+}
+
+.delete-btn {
+
+    background: crimson;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    cursor: pointer;
+}
