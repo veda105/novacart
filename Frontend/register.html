@@ -172,6 +172,17 @@ password
 const data =
 await response.json();
 
+if(data.message === "Email already exists"){
+
+document.getElementById(
+"message"
+).innerHTML =
+"❌ Email already exists";
+
+return;
+
+}
+
 document.getElementById(
 "message"
 ).innerHTML =
