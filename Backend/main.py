@@ -236,6 +236,9 @@ def get_orders(
     db: Session = Depends(get_db)
 ):
 
+    print("AUTH HEADER:")
+    print(authorization)
+
     if not authorization:
         return {
             "message": "Token Missing"
@@ -246,7 +249,13 @@ def get_orders(
         ""
     )
 
+    print("TOKEN AFTER REPLACE:")
+    print(token)
+
     payload = verify_token(token)
+
+    print("PAYLOAD:")
+    print(payload)
 
     if payload is None:
         return {
@@ -258,7 +267,6 @@ def get_orders(
     ).all()
 
     return orders
-
 from models import User
 
 @app.get("/debug-users")
