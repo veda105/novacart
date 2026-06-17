@@ -165,16 +165,18 @@ def profile(
     authorization: str = Header(None)
 ):
 
-    if not authorization:
+    if not authorization or not authorization.lower().startswith("bearer "):
 
         return {
             "message": "Token Missing"
         }
 
-    token = authorization.replace(
-        "Bearer ",
-        ""
-    )
+    token = authorization.split(" ")[1] if " " in authorization else authorization
+
+    if token in ("null", "undefined", ""):
+        return {
+            "message": "Invalid Token"
+        }
 
     payload = verify_token(token)
 
@@ -197,15 +199,17 @@ def create_order(
     db: Session = Depends(get_db)
 ):
 
-    if not authorization:
+    if not authorization or not authorization.lower().startswith("bearer "):
         return {
             "message": "Token Missing"
         }
 
-    token = authorization.replace(
-        "Bearer ",
-        ""
-    )
+    token = authorization.split(" ")[1] if " " in authorization else authorization
+
+    if token in ("null", "undefined", ""):
+        return {
+            "message": "Invalid Token"
+        }
 
     payload = verify_token(token)
 
@@ -239,15 +243,17 @@ def get_orders(
     print("AUTH HEADER:")
     print(authorization)
 
-    if not authorization:
+    if not authorization or not authorization.lower().startswith("bearer "):
         return {
             "message": "Token Missing"
         }
 
-    token = authorization.replace(
-        "Bearer ",
-        ""
-    )
+    token = authorization.split(" ")[1] if " " in authorization else authorization
+
+    if token in ("null", "undefined", ""):
+        return {
+            "message": "Invalid Token"
+        }
 
     print("TOKEN AFTER REPLACE:")
     print(token)
