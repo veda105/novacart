@@ -4,6 +4,10 @@ console.log("orders.js loaded");
 const token =
 localStorage.getItem("token");
 
+if(!token || token === "null" || token === "undefined") {
+    window.location.href = "login.html";
+}
+
 async function loadOrders(){
 
     const response =

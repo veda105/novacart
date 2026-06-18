@@ -17,6 +17,8 @@ async function loadProducts() {
 
         renderProducts();
 
+        loadStats();
+
     }
     catch(error){
 
@@ -150,6 +152,15 @@ async function deleteProduct(id){
     );
 
     loadProducts();
+
+}
+
+function loadStats(){
+
+    document.getElementById(
+        "totalProducts"
+    ).innerText =
+    products.length;
 
 }
 

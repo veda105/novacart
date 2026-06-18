@@ -343,16 +343,33 @@ document.getElementById(
 
 if(loggedUser && authSection){
 
+    let adminButton = "";
+
+    if(loggedUser === "veda"){
+
+        adminButton = `
+        <a href="admin.html">
+        Admin
+        </a>
+        `;
+    }
+
     authSection.innerHTML = `
 
     <span class="welcome-user">
     Welcome ${loggedUser}
     </span>
 
-    <button
-    onclick="getProfile()">
+    <button onclick="getProfile()">
     Profile
     </button>
+
+    <button
+    onclick="window.location.href='orders.html'">
+    Orders
+    </button>
+
+    ${adminButton}
 
     <button
     class="logout-btn"
@@ -362,7 +379,6 @@ if(loggedUser && authSection){
 
     `;
 }
-
 function logout(){
 
     localStorage.removeItem("token");

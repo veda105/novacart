@@ -562,12 +562,13 @@ footer p{
 #authSection{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 #authSection a{
     color: white;
     text-decoration: none;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -575,18 +576,19 @@ footer p{
     background: #3db2ff;
     border: none;
     color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 #authSection button:hover{
     opacity: 0.9;
 }
 
-
 .welcome-user{
     color: white;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -594,13 +596,8 @@ footer p{
     background: #3db2ff;
     border: none;
     color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
     cursor: pointer;
-}
-
-#authSection{
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    font-size: 14px;
 }
