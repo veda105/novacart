@@ -60,20 +60,35 @@ async function loginUser(){
 
     if(data.access_token){
 
-        localStorage.setItem(
-            "token",
-            data.access_token
-        );
+    localStorage.setItem(
+        "token",
+        data.access_token
+    );
 
-        localStorage.setItem(
-            "username",
-            data.username
-        );
+    localStorage.setItem(
+        "username",
+        data.username
+    );
+
+    localStorage.setItem(
+        "role",
+        data.role
+    );
+
+    if(data.role === "admin"){
+
+        window.location.href =
+        "admin.html";
+
+    }
+    else{
 
         window.location.href =
         "ecommerce.html";
 
-    }else{
+    }
+
+}else{
 
         document.getElementById(
             "message"

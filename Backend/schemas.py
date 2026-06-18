@@ -8,14 +8,12 @@ class ProductCreate(BaseModel):
     rating: float
     image: str
     description: str
-
-class UserCreate(BaseModel):
-
-    username: str
-
-    email: str
-
-    password: str
+    
+    class UserCreate(BaseModel):
+        username: str
+        email: str
+        password: str
+        role: str = "user"
 
 
 class UserLogin(BaseModel):

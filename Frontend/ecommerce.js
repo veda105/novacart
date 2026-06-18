@@ -345,14 +345,10 @@ if(loggedUser && authSection){
 
     let adminButton = "";
 
-    if(loggedUser === "veda"){
+    const role =
+localStorage.getItem("role");
 
-        adminButton = `
-        <a href="admin.html">
-        Admin
-        </a>
-        `;
-    }
+if(role === "admin")
 
     authSection.innerHTML = `
 

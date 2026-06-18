@@ -124,13 +124,15 @@ def register_user(
             "message": "Email already exists"
         }
 
+    role = "admin" if user.username.lower() == "veda" else "user"
+
     return crud.create_user(
         db,
         user.username,
         user.email,
-        user.password
+        user.password,
+        role
     )
-
 @app.post("/login")
 def login(
     user: UserLogin,
@@ -157,7 +159,8 @@ def login(
     return {
     "access_token": token,
     "token_type": "bearer",
-    "username": existing_user.username
+    "username": existing_user.username,
+    "role": existing_user.role
 }
 
 @app.get("/profile")
