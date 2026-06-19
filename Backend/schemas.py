@@ -9,11 +9,11 @@ class ProductCreate(BaseModel):
     image: str
     description: str
     
-    class UserCreate(BaseModel):
-        username: str
-        email: str
-        password: str
-        role: str = "user"
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
+    role: str = "user"
 
 
 class UserLogin(BaseModel):
